@@ -3,7 +3,7 @@ import {
   ProductImage,
   ProductTitle,
   ProductButtons,
-} from "../Components/ProductCard";
+} from "../Components";
 
 const product = {
   id: 1,
@@ -18,13 +18,8 @@ export const ShoppingPage = () => {
       <hr />
       <ProductCard product={product}>
         <ProductCard.Image />
-        <ProductCard.Title title="Caffe" />
-        <ProductCard.Buttons
-          count={0}
-          handleCount={function (value: number): void {
-            throw new Error("Function not implemented.");
-          }}
-        />
+        <ProductCard.Title title="vergamotas" />
+        <ProductCard.Buttons />
       </ProductCard>
 
       {/* <ProductCard product={product}>

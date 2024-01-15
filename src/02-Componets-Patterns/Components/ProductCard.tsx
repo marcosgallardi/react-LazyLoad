@@ -1,57 +1,30 @@
-import { ReactElement } from "react";
+import { ReactElement, createContext, useContext } from "react";
 import styles from "../Styles/styles.module.css";
-import noImage from "../Assets/no-image.jpg";
+
 import { useProduct } from "../Hooks/useProduct";
+import {
+  ProductContextProps,
+  ProductCardProps,
+} from "../Interfaces/interfaces";
+import { ProductImage } from "./ProductImage";
+import { ProductTitle } from "./ProductTitle";
+import { ProductButtons } from "./ProductButtons";
 
-interface Props {
-  product: products;
-  children?: ReactElement | ReactElement[];
-}
+export const ProductContext = createContext({} as ProductContextProps);
 
-interface products {
-  id: number;
-  title: string;
-  img?: string;
-}
+const { Provider } = ProductContext;
 
-interface ProductButtonsProps {
-  count: number;
-  handleCount: (value: number) => void;
-}
-
-export const ProductImage = ({ img = "" }) => {
-  return (
-    <img className={styles.productImg} src={img ? img : noImage} alt="coffee" />
-  );
-};
-
-export const ProductTitle = ({ title }: { title: string }) => {
-  return <span className={styles.productDescription}>{title}</span>;
-};
-
-export const ProductButtons = ({ count, handleCount }: ProductButtonsProps) => {
-  return (
-    <div className={styles.buttonsContainer}>
-      <button className={styles.buttonMinus} onClick={() => handleCount(-1)}>
-        -
-      </button>
-      <div className={styles.countLabel}>{count}</div>
-      <button className={styles.buttonAdd} onClick={() => handleCount(+1)}>
-        +
-      </button>
-    </div>
-  );
-};
-
-export const ProductCard = ({ children, product }: Props) => {
+export const ProductCard = ({ children, product }: ProductCardProps) => {
   const { count, handleCount } = useProduct();
   return (
-    <div className={styles.productCard}>
-      {children}
-      {/* <ProductImage img={product.img} />
+    <Provider value={{ count, handleCount, product }}>
+      <div className={styles.productCard}>
+        {children}
+        {/* <ProductImage img={product.img} />
       <ProductTitle title={product.title} />
       <ProductButtons count={count} handleCount={handleCount} /> */}
-    </div>
+      </div>
+    </Provider>
   );
 };
 
