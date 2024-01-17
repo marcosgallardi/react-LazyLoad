@@ -22,16 +22,11 @@ export const ShoppingPage = () => {
         <ProductCard.Buttons />
       </ProductCard>
 
-      {/* <ProductCard product={product}>
+      <ProductCard product={product}>
         <ProductImage />
-        <ProductTitle title="Caffe" />
-        <ProductButtons
-          count={0}
-          handleCount={function (value: number): void {
-            throw new Error("Function not implemented.");
-          }}
-        />
-      </ProductCard> */}
+        <ProductTitle />
+        <ProductButtons />
+      </ProductCard>
     </div>
   );
 };
