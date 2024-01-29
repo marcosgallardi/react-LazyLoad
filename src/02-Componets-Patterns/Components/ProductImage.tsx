@@ -3,7 +3,7 @@ import noImage from "../Assets/no-image.jpg";
 import { ProductContext } from "./ProductCard";
 import styles from "../Styles/styles.module.css";
 
-interface Props {
+export interface Props {
   img?: string;
   className?: string;
 }
@@ -20,5 +20,11 @@ export const ProductImage = ({ img = "", className }: Props) => {
     imgToShow = noImage;
   }
 
-  return <img className={`${styles.productImg} ${className}`} src={imgToShow} alt="coffee" />;
+  return (
+    <img
+      className={`${styles.productImg} ${className}`}
+      src={imgToShow}
+      alt="coffee"
+    />
+  );
 };
