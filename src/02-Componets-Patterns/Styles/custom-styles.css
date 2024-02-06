@@ -17,8 +17,14 @@
   color: white;
   border-color: white;
 }
-.container{
+.container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.shopping-cart {
+  position: fixed;
+  right: 10px;
+  top: 0px;
 }
