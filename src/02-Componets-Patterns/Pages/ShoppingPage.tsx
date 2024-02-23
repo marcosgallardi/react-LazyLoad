@@ -4,6 +4,7 @@ import {
   ProductTitle,
   ProductButtons,
 } from "../Components";
+import { Products } from "../Interfaces/interfaces";
 
 import "../Styles/custom-styles.css";
 
@@ -21,6 +22,16 @@ const products = [
 ];
 
 export const ShoppingPage = () => {
+  const onProductCountChange = ({
+    count,
+    product,
+  }: {
+    count: number;
+    product: Products;
+  }) => {
+    console.log("onProductCountChange", product);
+  };
+
   return (
     <div>
       <h1>Shopping Store</h1>
@@ -30,7 +41,8 @@ export const ShoppingPage = () => {
           <ProductCard
             product={product}
             className="bg-dark text-white"
-            key={product.id}>
+            key={product.id}
+            onChange={(e) => onProductCountChange(e)}>
             <ProductImage className="custom-image" />
             <ProductTitle className="text-white" />
             <ProductButtons className="custom-buttons" />
@@ -38,12 +50,22 @@ export const ShoppingPage = () => {
         ))}
       </div>
       <div className="shopping-cart">
-        <ProductCard product={products[0]} className="bg-dark text-white">
+        <ProductCard
+          product={products[0]}
+          className="bg-dark text-white"
+          style={{ width: "150px" }}
+          // onChange={() => onProductCountChange(products[0])}
+        >
           <ProductImage className="custom-image" />
 
           <ProductButtons className="custom-buttons" />
         </ProductCard>
-        <ProductCard product={products[1]} className="bg-dark text-white">
+        <ProductCard
+          product={products[1]}
+          className="bg-dark text-white"
+          style={{ width: "150px" }}
+          // onChange={() => onProductCountChange(products[1])}
+        >
           <ProductImage className="custom-image" />
 
           <ProductButtons className="custom-buttons" />
