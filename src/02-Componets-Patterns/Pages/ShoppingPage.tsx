@@ -53,8 +53,6 @@ export const ShoppingPage = () => {
 
   const transformToArray = Object.values(shoppingCart);
 
-  
-
   return (
     <div>
       <h1>Shopping Store</h1>
@@ -73,7 +71,7 @@ export const ShoppingPage = () => {
         ))}
       </div>
       <div className="shopping-cart">
-{/* Object.entries(shoppingCart).map()  y el resto, tambien podia funcionar       */}
+        {/* Object.entries(shoppingCart).map()  y el resto, tambien podia funcionar       */}
         {transformToArray.map((product) => {
           return (
             <ProductCard
@@ -81,10 +79,13 @@ export const ShoppingPage = () => {
               key={product.id}
               className="bg-dark text-white"
               style={{ width: "150px" }}
-              onChange={(e) => onProductCountChange(e)}>
+              value={product.count}>
               <ProductImage className="custom-image" />
               <ProductTitle className="text-white" />
-              <ProductButtons className="custom-buttons" style={{display:'flex',justifyContent:'center'}}/>
+              <ProductButtons
+                className="custom-buttons"
+                style={{ display: "flex", justifyContent: "center" }}
+              />
             </ProductCard>
           );
         })}

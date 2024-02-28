@@ -18,6 +18,7 @@ export interface Props {
   className?: string;
   style?: CSSProperties;
   onChange?: (args: onChangeArgs) => void;
+  value?: number;
 }
 
 export const ProductCard = ({
@@ -26,8 +27,9 @@ export const ProductCard = ({
   className,
   style,
   onChange,
+  value,
 }: Props) => {
-  const { count, handleCount } = useProduct({onChange,product});
+  const { count, handleCount } = useProduct({ onChange, product ,value});
   return (
     <Provider value={{ count, handleCount, product }}>
       <div className={`${styles.productCard} ${className}`} style={style}>
