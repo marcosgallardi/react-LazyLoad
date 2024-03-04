@@ -1,55 +1,16 @@
-import { useState } from "react";
 import {
   ProductCard,
   ProductImage,
   ProductTitle,
   ProductButtons,
 } from "../Components";
-import { Products } from "../Interfaces/interfaces";
 
 import "../Styles/custom-styles.css";
-
-const products = [
-  {
-    id: 1,
-    title: "Coffee Mug - Card",
-    img: "./coffee-mug.png",
-  },
-  {
-    id: 2,
-    title: "Coffee Mug - Meme",
-    img: "./coffee-mug2.png",
-  },
-];
-
-interface ProductInCart extends Products {
-  count: number;
-}
+import { products } from "../data/data";
+import { useShoppingCart } from "../Hooks/useShoppingCart";
 
 export const ShoppingPage = () => {
-  const [shoppingCart, setShoppingCart] = useState<{
-    [key: string]: ProductInCart;
-  }>({});
-
-  const onProductCountChange = ({
-    count,
-    product,
-  }: {
-    count: number;
-    product: Products;
-  }) => {
-    setShoppingCart((oldShoppingCart) => {
-      if (count === 0) {
-        const { [product.id]: toDelete, ...rest } = oldShoppingCart;
-        return rest;
-      }
-
-      return {
-        ...oldShoppingCart,
-        [product.id]: { ...product, count },
-      };
-    });
-  };
+  const { shoppingCart, onProductCountChange } = useShoppingCart();
 
   const transformToArray = Object.values(shoppingCart);
 
@@ -63,6 +24,7 @@ export const ShoppingPage = () => {
             product={product}
             className="bg-dark text-white"
             key={product.id}
+            value={shoppingCart[product.id]?.count || 0}
             onChange={(e) => onProductCountChange(e)}>
             <ProductImage className="custom-image" />
             <ProductTitle className="text-white" />
@@ -79,6 +41,7 @@ export const ShoppingPage = () => {
               key={product.id}
               className="bg-dark text-white"
               style={{ width: "150px" }}
+              onChange={(e) => onProductCountChange(e)}
               value={product.count}>
               <ProductImage className="custom-image" />
               <ProductTitle className="text-white" />
