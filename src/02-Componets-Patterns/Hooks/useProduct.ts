@@ -17,10 +17,9 @@ export const useProduct = ({
   const isControlled = useRef(!!onChange);
 
   const handleCount = (value: number) => {
- 
-if(isControlled.current){
-  return onChange!({ count: value, product });
-}
+    if (isControlled.current) {
+      return onChange!({ count: value, product });
+    }
 
     const newValue = Math.max(count + value, 0);
     setCount(newValue);
