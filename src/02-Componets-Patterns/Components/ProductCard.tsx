@@ -3,6 +3,7 @@ import styles from "../Styles/styles.module.css";
 
 import { useProduct } from "../Hooks/useProduct";
 import {
+  InitialValues,
   ProductContextProps,
   Products,
   onChangeArgs,
@@ -19,6 +20,7 @@ export interface Props {
   style?: CSSProperties;
   onChange?: (args: onChangeArgs) => void;
   value?: number;
+  initialValues?: InitialValues
 }
 
 export const ProductCard = ({
@@ -28,8 +30,9 @@ export const ProductCard = ({
   style,
   onChange,
   value,
+  initialValues
 }: Props) => {
-  const { count, handleCount } = useProduct({ onChange, product ,value});
+  const { count, handleCount } = useProduct({ onChange, product ,value,initialValues});
   return (
     <Provider value={{ count, handleCount, product }}>
       <div className={`${styles.productCard} ${className}`} style={style}>
