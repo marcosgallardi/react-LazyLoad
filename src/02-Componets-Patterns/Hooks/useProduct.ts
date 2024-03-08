@@ -16,7 +16,7 @@ export const useProduct = ({
   onChange,
   product,
   value = 0,
-  initialValues
+  initialValues,
 }: useProductArgs) => {
   const [count, setCount] = useState<number>(initialValues?.count || value);
 
