@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
 
 import logo from "../logo.svg";
+import { RegisterPage } from "../03-forms/pages/RegisterPage";
 
 export const Navigation = () => {
   return (
@@ -11,9 +12,9 @@ export const Navigation = () => {
           <ul>
             <li>
               <NavLink
-                to="/"
+                to="/register"
                 className={({ isActive }) => (isActive ? "nav-active" : "")}>
-                
+                RegisterPage
               </NavLink>
             </li>
             <li>
@@ -34,6 +35,8 @@ export const Navigation = () => {
         </nav>
 
         <Routes>
+          <Route path="/register" element={<RegisterPage />} />
+
           <Route path="/home" element={"Home"} />
           <Route path="/lazy1" element={"About"} />
         </Routes>
