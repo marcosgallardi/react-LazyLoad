@@ -1,22 +1,19 @@
-import { ChangeEvent, FormEvent, useState } from "react";
+import { FormEvent } from "react";
 import "../styles/styles.css";
+import { useForm } from "../hooks/useForm";
 
 export const RegisterPage = () => {
-  const [registerData, setRegisterData] = useState({
+  const initialState = {
     name: "",
     email: "",
     password1: "",
     password2: "",
-  });
-
-  const { name, email, password1, password2 } = registerData;
-
-  const onChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
-    setRegisterData({ ...registerData, [target.name]: target.value });
   };
+  const { name, password1, password2, email, formData, onChange, resetForm } =
+    useForm(initialState);
 
   const onSubmit = (event: FormEvent<HTMLFormElement> | undefined) => {
-    event?.preventDefault()
+    event?.preventDefault();
   };
 
   return (
@@ -29,7 +26,9 @@ export const RegisterPage = () => {
           value={name}
           name="name"
           onChange={onChange}
+          className={`${name.trim().length <= 0 && "has-error"}  `}
         />
+        {name.trim().length <= 0 && <span>Este campo es necesario</span>}
         <input
           type="email"
           placeholder="email"
@@ -52,6 +51,9 @@ export const RegisterPage = () => {
           onChange={onChange}
         />
         <button type="submit">Create</button>
+        <button type="button" onClick={resetForm}>
+          Reset form
+        </button>
       </form>
     </div>
   );
