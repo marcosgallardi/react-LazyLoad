@@ -9,8 +9,16 @@ export const RegisterPage = () => {
     password1: "",
     password2: "",
   };
-  const { name, password1, password2, email, formData, onChange, resetForm } =
-    useForm(initialState);
+  const {
+    name,
+    password1,
+    password2,
+    email,
+    formData,
+    onChange,
+    resetForm,
+    isValidEmail,
+  } = useForm(initialState);
 
   const onSubmit = (event: FormEvent<HTMLFormElement> | undefined) => {
     event?.preventDefault();
@@ -35,7 +43,11 @@ export const RegisterPage = () => {
           value={email}
           name="email"
           onChange={onChange}
+          className={`${!isValidEmail(email) && "has-error"}  `}
         />
+
+        {!isValidEmail(email) && <span>Email es necesario</span>}
+
         <input
           type="password"
           placeholder="password"
@@ -43,6 +55,9 @@ export const RegisterPage = () => {
           name="password1"
           onChange={onChange}
         />
+        {password1.trim().length <= 0 && (
+          <span>Esta password es necesario</span>
+        )}
         <input
           type="password"
           placeholder="password"
@@ -50,6 +65,10 @@ export const RegisterPage = () => {
           name="password2"
           onChange={onChange}
         />
+
+{password2.trim().length <= 0 && (
+          <span>Esta password es necesario</span>
+        )}
         <button type="submit">Create</button>
         <button type="button" onClick={resetForm}>
           Reset form
