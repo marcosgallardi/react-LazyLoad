@@ -66,7 +66,7 @@ export const RegisterPage = () => {
           onChange={onChange}
         />
 
-{password2.trim().length <= 0 && (
+        {password2.trim().length <= 0 && (
           <span>Esta password es necesario</span>
         )}
         <button type="submit">Create</button>

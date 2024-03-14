@@ -17,5 +17,5 @@ export const useForm = <T>(initialState: T) => {
     return re.test(email);
   };
 
-  return { ...formData, formData, onChange, resetForm,isValidEmail };
+  return { ...formData, formData, onChange, resetForm, isValidEmail };
 };
