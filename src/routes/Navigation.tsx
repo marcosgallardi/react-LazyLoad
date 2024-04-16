@@ -38,7 +38,7 @@ export const Navigation = () => {
         <Routes>
           <Route path="/register" element={<RegisterPage />} />
 
-          <Route path="/formikBasic" element={<FormikBasicPage/>} />
+          <Route path="/formikBasic" element={<FormikBasicPage />} />
           <Route path="/lazy1" element={"About"} />
         </Routes>
       </div>
