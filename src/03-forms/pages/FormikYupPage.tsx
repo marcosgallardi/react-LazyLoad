@@ -3,11 +3,7 @@ import * as Yup from "yup";
 
 import "../styles/styles.css";
 
-interface FormValues {
-  firstName: string;
-  lastName: string;
-  email: string;
-}
+
 
 export const FormikYupPage = () => {
   const {
